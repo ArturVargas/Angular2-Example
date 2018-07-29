@@ -1,0 +1,94 @@
+<block-ui>
+<h1>Alumnos</h1>
+<hr>
+
+<div class="container col-12">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="ID Familia" (keyup.enter)="buscarAlumno(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarId style="text-transform:uppercase;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Nombre" (keyup.enter)="buscarAlumno(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarName style="text-transform:uppercase;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Paterno" (keyup.enter)="buscarAlumno(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarLastname style="text-transform:uppercase;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Materno" (keyup.enter)="buscarAlumno(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarLastnameTwo style="text-transform:uppercase;">
+        <button (click)="buscarAlumno(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            class="btn btn-outline-primary my-2 my-sm-0" type="button">Consultar</button>
+    </form>
+</div>
+<br>
+<!--<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No. de Familia</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Nombre</th>
+            <th>Nivel Escolar</th>
+            <th>Grado</th>
+            <th>Grupo</th>
+            <th>Género</th>
+            <th>Email</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Teléfono fijo</th>
+            <th>Teléfono Celular</th>
+            <th>Ciclo Escolar</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let alumno of alumnos">
+            <td>{{alumno.noFamilia}}</td>
+            <td>{{alumno.apellidoPaternoAlumno}}</td>
+            <td>{{alumno.apellidoMaternoAlumno}}</td>
+            <td>{{alumno.nombreAlumno}}</td>
+            <td>{{alumno.nivelEscolar}}</td>
+            <td>{{alumno.grado}}</td>
+            <td>{{alumno.grupo}}</td>
+            <td>{{alumno.genero}}</td>
+            <td>{{alumno.emailAlumno}}</td>
+            <td>{{alumno.fechaNacimiento}}</td>
+            <td>{{alumno.telefonoLocal}}</td>
+            <td>{{alumno.telefonoMovil}}</td>
+            <td>{{alumno.cicloEscolar}}</td>
+            <th><button class="btn btn-outline-primary" (click)="pasarDatos(alumno)">Actualizar</button></th>
+            <th><button class="btn btn-outline-danger" (click)="eliminarDatos()">Eliminar</button></th>
+        </tr>
+    </tbody>
+</table>-->
+
+<p-dataTable [value]="alumnos" [rows]="10" [paginator]="true" dataKey="vin" [pageLinks]="3"
+    [rowsPerPageOptions]="[5,10,20]">
+    <p-column field="noFamilia" header=" No. de Familia "></p-column>
+    <p-column field="apellidoPaternoAlumno" header=" Apellido Paterno "></p-column>
+    <p-column field="apellidoMaternoAlumno" header=" Apellido Materno "></p-column>
+    <p-column field="nombreAlumno" header=" Nombre "></p-column>
+    <p-column field="nivelEscolar" header=" Nivel Escolar "></p-column>
+    <p-column field="grado" header=" Grado "></p-column>
+    <p-column field="grupo" header=" Grupo "></p-column>
+    <p-column field="genero" header=" Género "></p-column>
+    <!-- <p-column field="emailAlumno" header="Email"></p-column>
+    <p-column field="fechaNacimiento" header="Fecha de Nacimiento"></p-column>
+    <p-column field="telefonoLocal" header="Teléfono fijo"></p-column>
+    <p-column field="telefonoMovil" header="Teléfono Celular"></p-column> -->
+    <p-column field="cicloEscolar" header=" Ciclo Escolar "></p-column>
+    <p-column>
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template let-report="rowData" pTemplate="body">
+            <button type="button" class="btn btn-outline-primary" pButton (click)="pasarDatos(report)">Actualizar</button>
+        </ng-template>
+    </p-column>
+<p-column>
+    <ng-template pTemplate="header">
+    </ng-template>
+    <ng-template let-report="rowData" pTemplate="body">
+        <button type="button" class="btn btn-outline-danger" pButton (click)="eliminarDatos(report)">Eliminar</button>
+    </ng-template>
+</p-column>
+</p-dataTable>
+
+<a class="btn btn-outline-primary" [routerLink]="['/edit-alumnos']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

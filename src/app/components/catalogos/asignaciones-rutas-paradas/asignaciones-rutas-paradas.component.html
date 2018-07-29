@@ -1,0 +1,133 @@
+<block-ui>
+    <h1>
+        Crear Ruta</h1>
+    <hr>
+
+    <!--<div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Ruta" (keyup.enter)="buscarAsignacionRuta(ruta.value)" #ruta>
+            <button (click)="buscarAsignacionRuta(ruta.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!rute.valid && rute.touched}" *ngIf="rute==2">
+                <select class="form-control" name="rute" [(ngModel)]="rutaCreada.nombreRuta" required autofocus #rute="ngModel">
+                    <option *ngFor="let c of rutas" [ngValue]="c.idRuta">{{c.nombreRuta}}</option>
+                </select>
+                <div *ngIf="rute.errors && (rute.dirty || rute.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        La ruta es requerida
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-10" type="text" name="ruta" placeholder="Ruta" [(ngModel)]="rutaCreada.nombreRuta"
+            autofocus #ruta="ngModel">
+           <!-- <div *ngIf="ruta.errors && ruta.touched || ruta.dirty" class="form-control-feedback">
+                <div [hidden]="ruta.errors.required">
+                    La dirección es requerida
+                </div>
+            </div>-->
+        </form>
+    </div>
+    <br>
+   <!-- <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Horario Ascenso" (keyup.enter)="buscarAsignacionAscenso(horarioAscenso.value)"
+                #horarioAscenso>
+            <button (click)="buscarAsignacionAscenso(horarioAscenso.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!ascen.valid && ascen.touched}" *ngIf="ascen==2">
+                <select class="form-control" name="ascen" [(ngModel)]="rutaCreada.idHorarioAsc" required autofocus #ascen="ngModel">
+                    <option *ngFor="let c of ascensos" [ngValue]="c.idHorario">{{c.hora}}</option>
+                </select>
+                <div *ngIf="rute.errors && (rute.dirty || rute.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        El horario de ascenso es requerido
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Horario Descenso" (keyup.enter)="buscarAsignacionDescenso(horarioDescenso.value)"
+                #horarioDescenso>
+            <button (click)="buscarAsignacionDescenso(horarioDescenso.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!descen.valid && descen.touched}" *ngIf="descen==2">
+                <select class="form-control" name="descen" [(ngModel)]="rutaCreada.idHorarioDesc" required autofocus #descen="ngModel">
+                    <option *ngFor="let c of descensos" [ngValue]="c.idHorario">{{c.hora}}</option>
+                </select>
+                <div *ngIf="descen.errors && (descen.dirty || descen.touched)" class="form-control-feedback">
+                    <div [hidden]="!descen.errors.required">
+                        El horario de descenso es requerido
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>-->
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Id Conductor" (keyup.enter)="buscarAsignacionConductor(idConductor.value)"
+                #idConductor>
+            <button (click)="buscarAsignacionConductor(idConductor.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!chofer.valid && chofer.touched}" *ngIf="chofer==2">
+                <select class="form-control" name="chofer" [(ngModel)]="rutaCreada.idConductor" required autofocus #chofer="ngModel">
+                    <option *ngFor="let c of conductores" [ngValue]="c.idConductor">{{c.nombreConductor}} {{c.apellidoPaternoConductor}} {{c.apellidoMaternoConductor}}</option>
+                </select>
+                <div *ngIf="chofer.errors && (descen.dirty || chofer.touched)" class="form-control-feedback">
+                    <div [hidden]="!chofer.errors.required">
+                        El chofer es requerido
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Número Autobús" (keyup.enter)="buscarAsignacionAutobus(noAutobus.value)"
+                #noAutobus>
+            <button (click)="buscarAsignacionAutobus(noAutobus.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!bus.valid && bus.touched}" *ngIf="bus==2">
+                <select class="form-control" name="bus" [(ngModel)]="rutaCreada.noAutobus" required autofocus #bus="ngModel">
+                    <option *ngFor="let c of autobuses" [ngValue]="c.noAutobus">{{c.nombreAutobus}}</option>
+                </select>
+                <div *ngIf="rute.errors && (bus.dirty || bus.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        El número de autobús es requerido
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Nana" (keyup.enter)="buscarAsignacionNana(nombreNana.value)"
+                #nombreNana>
+            <button (click)="buscarAsignacionNana(nombreNana.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!nani.valid && nani.touched}" *ngIf="nani==2">
+                <select class="form-control" name="nani" [(ngModel)]="rutaCreada.idNana" required autofocus #nani="ngModel">
+                    <option *ngFor="let c of nanas" [ngValue]="c.idNana">{{c.nombreNana}} {{c.apellidoPaternoNana}} {{c.apellidoMaternoNana}}</option>
+                </select>
+                <div *ngIf="nani.errors && (nani.dirty || nani.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        La nana es requerida
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <button type="button" class="btn btn-outline-primary" pButton (click)="guardarDatos()">Guardar</button>
+    <a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

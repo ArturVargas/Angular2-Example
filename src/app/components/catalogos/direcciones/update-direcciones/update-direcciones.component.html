@@ -1,0 +1,114 @@
+<h4>
+
+    Actualizar <small>Dirección</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['calle'].valid && forma.controls['calle'].touched}">
+        <label class="col-2 col-form-label">Calle</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Calle" formControlName="calle" [(ngModel)]="direccion.calle">
+            <div *ngIf="forma.get('calle').errors?.required && forma.controls['calle'].touched" class="form-control-feedback">
+                La calle requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['numeroExterior'].valid && forma.controls['numeroExterior'].touched}">
+        <label class="col-2 col-form-label">Número Exterior</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Número Exterior" formControlName="numeroExterior" [(ngModel)]="direccion.numeroExterior">
+            <div *ngIf="forma.get('numeroExterior').errors?.required  && forma.controls['numeroExterior'].touched" class="form-control-feedback">
+                El número exterior es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['numeroInterior'].valid && forma.controls['numeroInterior'].touched}">
+        <label class="col-2 col-form-label">Número Interior</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Número Interior" formControlName="numeroInterior" [(ngModel)]="direccion.numeroInterior">
+            <div *ngIf="forma.get('numeroInterior').errors?.required && forma.controls['numeroInterior'].touched" class="form-control-feedback">
+                El número interior es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['colonia'].valid && forma.controls['colonia'].touched}">
+        <label class="col-2 col-form-label">Colonia</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Colonia" formControlName="colonia" [(ngModel)]="direccion.colonia">
+            <div *ngIf="forma.get('colonia').errors?.required && forma.controls['colonia'].touched" class="form-control-feedback">
+                La colonia es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['municipio'].valid && forma.controls['municipio'].touched}">
+        <label class="col-2 col-form-label">Municipio</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Municipio" formControlName="municipio" [(ngModel)]="direccion.municipio">
+            <div *ngIf="forma.get('municipio').errors?.required && forma.controls['municipio'].touched" class="form-control-feedback">
+                El municipio es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['grupo'].valid && forma.controls['grupo'].touched}">
+        <label class="col-2 col-form-label">Grupo</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Grupo" formControlName="grupo" [(ngModel)]="direccion.grupo">
+            <div *ngIf="forma.get('grupo').errors?.required && forma.controls['grupo'].touched" class="form-control-feedback">
+                El grupo es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['estado'].valid && forma.controls['estado'].touched}">
+        <label class="col-2 col-form-label">Estado</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Estado" formControlName="estado" [(ngModel)]="direccion.estado">
+            <div *ngIf="forma.get('estado').errors?.required && forma.controls['estado'].touched" class="form-control-feedback">
+                El estado es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['codigoPostal'].valid && forma.controls['codigoPostal'].touched}">
+        <label class="col-2 col-form-label">Código Postal</label>
+        <div class="col-8">
+            <input class="form-control" type="email" placeholder="Código Postal" formControlName="codigoPostal" [(ngModel)]="direccion.codigoPostal">
+            <div *ngIf="forma.get('codigoPostal').errors?.required && forma.controls['codigoPostal'].touched" class="form-control-feedback">
+                El código postal es requerido
+            </div>
+        </div>
+    </div>
+
+    <!--FECHA DE NACIMIENTO-->
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['referencias'].valid && forma.controls['referencias'].touched}">
+        <label class="col-2 col-form-label">Referencias</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Referencias" formControlName="referencias" [(ngModel)]="direccion.referencias">
+            <div *ngIf="forma.get('referencias').errors?.required && forma.controls['referencias'].touched" class="form-control-feedback">
+                Las referencias son requeridas
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Actualizar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/direcciones']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

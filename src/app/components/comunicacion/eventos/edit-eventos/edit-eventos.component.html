@@ -1,0 +1,111 @@
+<h4>
+    Eventos</h4>
+<hr>
+<form role="form" name="editTituloForm" id="editTituloForm" (ngSubmit)="guardarCambios()" #editTituloForm="ngForm" novalidate>
+
+    <!-- <div class="form-group row" [ngClass]="{' has-danger':!titul.valid && titul.touched}">
+        <label class="col-2 col-form-label">Título</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Título" name="titul" [(ngModel)]="evento.titulo" required autofocus
+                #titul="ngModel">
+            <div *ngIf="titul.errors && (titul.dirty || titul.touched)" class="form-control-feedback">
+                <div [hidden]="!titul.errors.required">
+                    El título es requerido
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="form-group row" [ngClass]="{' has-danger':!mensajeCorto.valid && mensajeCorto.touched}">
+        <label class="col-2 col-form-label">Asunto</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="ASUNTO" name="mensajeCorto" [(ngModel)]="evento.mensajeCorto"
+                required autofocus #mensajeCorto="ngModel" style="">
+            <div *ngIf="mensajeCorto.errors && (mensajeCorto.dirty || mensajeCorto.touched)" class="form-control-feedback">
+                <div [hidden]="!mensajeCorto.errors.required">
+                    El mensaje corto es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!mensajeLargo.valid && mensajeLargo.touched}">
+        <label class="col-2 col-form-label">Texto</label>
+        <div class="col-8">
+            <!-- <input class="form-control" type="text" placeholder="Mensaje Largo" name="mensajeLargo" [(ngModel)]="evento.mensajeLargo"
+                required autofocus #mensajeLargo="ngModel"> -->
+                <textarea class="form-control" type="text" placeholder="Texto" name="mensajeLargo" [(ngModel)]="evento.mensajeLargo"
+                    required autofocus #mensajeLargo="ngModel"></textarea>
+            <div *ngIf="mensajeLargo.errors && (mensajeLargo.dirty || mensajeLargo.touched)" class="form-control-feedback">
+                <div [hidden]="!mensajeLargo.errors.required">
+                    El mensaje largo es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!escuela.valid && escuela.touched}">
+        <label class="col-2 col-form-label">Escuela</label>
+        <div class="col-8">
+            <!-- <input class="form-control" type="text" placeholder="Escuela" name="escuela" [(ngModel)]="evento.escuela" required autofocus
+                #escuela="ngModel"> -->
+                <select class="form-control" type="text" placeholder="Escuela" name="escuela" [(ngModel)]="evento.escuela" required autofocus
+                    #escuela="ngModel">
+                  <option >Primaria</option>
+                </select>
+            <div *ngIf="escuela.errors && (escuela.dirty || escuela.touched)" class="form-control-feedback">
+                <div [hidden]="!escuela.errors.required">
+                    La escuela es requerida
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="form-group row" [ngClass]="{' has-danger':!sistemaOperativo.valid && sistemaOperativo.touched}">
+        <label class="col-2 col-form-label">Sistema Operativo</label>
+        <div class="col-8">
+             <input class="form-control" type="text" placeholder="Sistema Operativo" name="sistemaOperativo" [(ngModel)]="evento.sistemaOperativo"
+                required autofocus #sistemaOperativo="ngModel">
+                <select class="form-control" type="text" placeholder="Sistema Operativo" name="sistemaOperativo" [(ngModel)]="evento.sistemaOperativo"
+                    required autofocus #sistemaOperativo="ngModel">
+                  <option>IOS</option>
+                  <option>Android</option>
+                </select>
+            <div *ngIf="sistemaOperativo.errors && (sistemaOperativo.dirty || sistemaOperativo.touched)" class="form-control-feedback">
+                <div [hidden]="!sistemaOperativo.errors.required">
+                    El sistema operativo es requerido
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="form-group row" [ngClass]="{' has-danger':!fechaNacimient.valid && fechaNacimient.touched}">
+        <label class="col-2 col-form-label">Fecha Evento</label>
+        <div class="col-8">
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" name="fechaNacimient" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="evento.fechaNacimiento"
+                    required autofocus #fechaNacimient="ngModel">
+                <div class="input-group-addon" (click)="d.toggle()">
+                    <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </div>
+            </div>
+            <div *ngIf="fechaNacimient.errors && (fechaNacimient.dirty || fechaNacimient.touched)" class="form-control-feedback">
+                <div [hidden]="!fechaNacimient.errors.required">
+                    La fecha de nacimiento es requerida es requerida
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="editTituloForm.invalid">
+                Guardar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/eventos']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+</form>

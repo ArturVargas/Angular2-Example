@@ -1,0 +1,222 @@
+<block-ui>
+    <h4>
+        Agregar <small>Alumno</small></h4>
+    <hr>
+    <form role="form" name="editAlumnoForm" id="editAlumnoForm" (ngSubmit)="guardarCambios()" #editAlumnoForm="ngForm" novalidate>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!noFamili.valid && noFamili.touched}">
+            <label class="col-2 col-form-label">Número de Familia</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="No. de Familia" name="noFamili" [(ngModel)]="alumno.noFamilia" required
+                    autofocus #noFamili="ngModel" style="text-transform:uppercase;">
+                <div *ngIf="noFamili.errors && (noFamili.dirty || noFamili.touched)" class="form-control-feedback">
+                    <div [hidden]="!noFamili.errors.required">
+                        El número de familia es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!apellidoPaterno.valid && apellidoPaterno.touched}">
+            <label class="col-2 col-form-label">Apellido Paterno</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Apellido Paterno" name="apellidoPaterno" [(ngModel)]="alumno.apellidoPaternoAlumno"
+                    required autofocus #apellidoPaterno="ngModel" style="text-transform:uppercase;">
+                <div *ngIf="apellidoPaterno.errors && (apellidoPaterno.dirty || apellidoPaterno.touched)" class="form-control-feedback">
+                    <div [hidden]="!apellidoPaterno.errors.required">
+                        El apellido paterno es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!apellidoMaterno.valid && apellidoMaterno.touched}">
+            <label class="col-2 col-form-label">Apellido Materno</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Apellido Materno" name="apellidoMaterno" [(ngModel)]="alumno.apellidoMaternoAlumno"
+                    required autofocus #apellidoMaterno="ngModel" style="text-transform:uppercase;">
+                <div *ngIf="apellidoMaterno.errors && (apellidoMaterno.dirty || apellidoMaterno.touched)" class="form-control-feedback">
+                    <div [hidden]="!apellidoMaterno.errors.required">
+                        El apellido materno es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!nombre.valid && nombre.touched}">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" [(ngModel)]="alumno.nombreAlumno" required autofocus
+                    #nombre="ngModel" style="text-transform:uppercase;">
+                <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" class="form-control-feedback">
+                    <div [hidden]="!nombre.errors.required">
+                        El nombre es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!nivelEscola.valid && nivelEscola.touched}">
+            <label class="col-2 col-form-label">Nivel Escolar</label>
+            <div class="col-8">
+                <select class="form-control" [(ngModel)]="alumno.nivelEscolar" required autofocus #nivelEscola="ngModel" name="nivelEscola">
+                  <option *ngFor="let c of nivelSchool" [ngValue]="c.name">{{c.nombre}}</option>
+            </select>
+                <div *ngIf="nivelEscola.errors && (nivelEscola.dirty || nivelEscola.touched)" class="form-control-feedback">
+                    <div [hidden]="!nivelEscola.errors.required">
+                        El nivel escolar es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!grad.valid && grad.touched}">
+            <label class="col-2 col-form-label">Grado</label>
+            <div class="col-8">
+                <select class="form-control" name="grad" [(ngModel)]="alumno.grado" required autofocus #grad="ngModel">
+                <option *ngFor="let c of grade" [ngValue]="c.name">{{c.name}}</option>
+            </select>
+                <div *ngIf="grad.errors && (grad.dirty || grad.touched)" class="form-control-feedback">
+                    <div [hidden]="!grad.errors.required">
+                        El grado es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!grup.valid && grup.touched}">
+            <label class="col-2 col-form-label">Grupo</label>
+            <div class="col-8">
+                <select class="form-control" name="grup" [(ngModel)]="alumno.grupo" required autofocus #grup="ngModel">
+           <option *ngFor="let c of group" [ngValue]="c.name">{{c.name}}</option>
+            </select>
+                <div *ngIf="grup.errors && (grup.dirty || grup.touched)" class="form-control-feedback">
+                    <div [hidden]="!grup.errors.required">
+                        El grupo es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!gener.valid && gener.touched}">
+            <label class="col-2 col-form-label">Género</label>
+            <div class="col-8">
+                <select class="form-control" name="gener" [(ngModel)]="alumno.genero" required autofocus #gener="ngModel">
+                <option *ngFor="let c of generr" [ngValue]="c.name">{{c.nombre}}</option>
+                </select>
+                <div *ngIf="gener.errors && (gener.dirty || gener.touched)" class="form-control-feedback">
+                    <div [hidden]="!gener.errors.required">
+                        El género es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!fechaNacimient.valid && fechaNacimient.touched}">
+            <label class="col-2 col-form-label">Fecha de Nacimiento</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" name="fechaNacimient" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="alumno.fechaNacimiento"
+                        required autofocus #fechaNacimient="ngModel">
+                    <div class="input-group-addon" (click)="d.toggle()">
+                        <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                    </div>
+                </div>
+                <div *ngIf="fechaNacimient.errors && (fechaNacimient.dirty || fechaNacimient.touched)" class="form-control-feedback">
+                    <div [hidden]="!fechaNacimient.errors.required">
+                        La fecha de nacimiento es requerida es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="form-group row" [ngClass]="{' has-danger':!emailAlumn.valid && emailAlumn.touched}">
+            <label class="col-2 col-form-label">Email</label>
+            <div class="col-8">
+                <input class="form-control" type="email" placeholder="Email" name="emailAlumn" [(ngModel)]="alumno.emailAlumno" required
+                    autofocus #emailAlumn="ngModel">
+                <div *ngIf="emailAlumn.errors && (emailAlumn.dirty || emailAlumn.touched)" class="form-control-feedback">
+                    <div [hidden]="!emailAlumn.errors.required">
+                        El email es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row" [ngClass]="{' has-danger':!fechaNacimient.valid && fechaNacimient.touched}">
+            <label class="col-2 col-form-label">Fecha de Nacimiento</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" name="fechaNacimient" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="alumno.fechaNacimiento"
+                        required autofocus #fechaNacimient="ngModel">
+                    <div class="input-group-addon" (click)="d.toggle()">
+                        <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                    </div>
+                </div>
+                <div *ngIf="fechaNacimient.errors && (fechaNacimient.dirty || fechaNacimient.touched)" class="form-control-feedback">
+                    <div [hidden]="!fechaNacimient.errors.required">
+                        La fecha de nacimiento es requerida es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row" [ngClass]="{' has-danger':!telefonoLoca.valid && telefonoLoca.touched}">
+            <label class="col-2 col-form-label">Teléfono Fijo</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Teléfono fijo" name="telefonoLoca" [(ngModel)]="alumno.telefonoLocal"
+                    required autofocus #telefonoLoca="ngModel">
+                <div *ngIf="telefonoLoca.errors && (telefonoLoca.dirty || telefonoLoca.touched)" class="form-control-feedback">
+                    <div [hidden]="!telefonoLoca.errors.required">
+                        El teléfono fijo es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!telefonoMovi.valid && telefonoMovi.touched}">
+            <label class="col-2 col-form-label">Teléfono Celular</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Teléfono Celular" name="telefonoMovi" [(ngModel)]="alumno.telefonoMovil"
+                    required autofocus #telefonoMovi="ngModel">
+                <div *ngIf="telefonoMovi.errors && (telefonoMovi.dirty || telefonoMovi.touched)" class="form-control-feedback">
+                    <div [hidden]="!telefonoMovi.errors.required">
+                        El teléfono Celular es requerido
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="form-group row" [ngClass]="{' has-danger':!cicloEscola.valid && cicloEscola.touched}">
+            <label class="col-2 col-form-label">Ciclo Escolar</label>
+            <div class="col-8">
+                <select class="form-control" name="cicloEscola" [(ngModel)]="alumno.cicloEscolar" required autofocus #cicloEscola="ngModel">
+                <option *ngFor="let c of ciclo" [ngValue]="c.name">{{c.name}}</option>
+            </select>
+                <div *ngIf="cicloEscola.errors && (cicloEscola.dirty || cicloEscola.touched)" class="form-control-feedback">
+                    <div [hidden]="!cicloEscola.errors.required">
+                        El ciclo escolar es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-offset-8">
+                <button type="submit" class="btn btn-outline-primary" [disabled]="editAlumnoForm.invalid">
+                Guardar
+            </button>
+                <label>&nbsp;</label>
+                <a [routerLink]="['/alumnos']" class="btn btn-outline-danger"> Regresar</a>
+            </div>
+        </div>
+    </form>
+</block-ui>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>

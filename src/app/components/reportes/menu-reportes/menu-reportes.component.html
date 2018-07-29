@@ -1,0 +1,125 @@
+<block-ui>
+    <h1>
+        Consultar Reportes</h1>
+    <hr>
+
+    <div class="container col-12" *ngIf="ventana==1">
+        <form class="form-inline my-2">
+            <div class="form-group row" [ngClass]="{' has-danger':!nivelEscola.valid && nivelEscola.touched}">
+                <div class="col-4">
+                    <select class="form-control" [(ngModel)]="ascDesc" required autofocus #nivelEscola="ngModel" name="nivelEscola">
+                  <option *ngFor="let c of seleccionar" [ngValue]="c.id">{{c.nombre}}</option>
+            </select>
+                    <br>
+                    <div *ngIf="nivelEscola.errors && (nivelEscola.dirty || nivelEscola.touched)" class="form-control-feedback">
+                        <div [hidden]="!nivelEscola.errors.required">
+                            El ascenso/descenso es requerido
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br>
+            <input class="form-control mr-sm-2" type="text" placeholder="Ruta" (keyup.enter)="buscarReporte(buscarRuta.value)" #buscarRuta>
+            <input class="form-control mr-sm-2" type="text" placeholder="Número de Autobús" (keyup.enter)="buscaReporte(buscarAutobus.value)"
+                #buscarAutobus>
+            <input class="form-control mr-sm-2" type="text" placeholder="Día" (keyup.enter)="buscarReporte(buscarDia.value)" #buscarDia>
+            <button (click)="buscarReporte(buscarRuta.value, buscarAutobus.value, buscarDia.value)" class="btn btn-outline-primary my-2 my-sm-0"
+                type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+    <!--<table class="table table-striped" *ngIf="ventana==4">
+        <thead>
+            <tr>
+                <th>Nombre de Ruta</th>
+                <th>Hora de Ascenso</th>
+                <th>Hora de Descenso</th>
+                <th>Nombre Conductor</th>
+                <th>Placas de Autobús</th>
+                <th>Nombre de Nana</th>
+                <th>Capacidad</th>
+                <th>Lugares Ocupados</th>
+                <th>Disponibles</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reporte of reportes">
+                <td>{{reporte.nombreRuta}}</td>
+                <td>{{reporte.horaAscenso}}</td>
+                <td>{{reporte.horaDescenso}}</td>
+                <td>{{reporte.nombreConductor}}</td>
+                <td>{{reporte.placaAutobus}}</td>
+                <td>{{reporte.nombreNana}}</td>
+                <td>{{reporte.capacidad}}</td>
+                <td>{{reporte.lugaresOcupados}}</td>
+                <td>{{reporte.lugaresDisponibles}}</td>
+                <th><button class="btn btn-outline-primary" (click)="pasarDatos(reporte)">Más</button></th>
+            </tr>
+        </tbody>
+    </table>-->
+
+    <p-dataTable [value]="reportes" [rows]="10" [paginator]="true" [(selection)]="selectedReport" dataKey="vin" [pageLinks]="3"
+        [rowsPerPageOptions]="[5,10,20]" *ngIf="ventana==1">
+        <p-column field="nombreRuta" header="Nombre de Ruta"></p-column>
+        <p-column field="horaAscenso" header="Hora de Ascenso"></p-column>
+        <p-column field="horaDescenso" header="Hora de Descenso"></p-column>
+        <p-column field="nombreConductor" header="Nombre Conductor"></p-column>
+        <p-column field="placaAutobus" header="Placas de Autobús"></p-column>
+        <p-column field="nombreNana" header="Nombre de Nana"></p-column>
+        <p-column field="capacidad" header="Capacidad"></p-column>
+        <p-column field="lugaresOcupados" header="Lugares Ocupados"></p-column>
+        <p-column field="lugaresDisponibles" header="Disponibles"></p-column>
+        <p-column>
+            <ng-template pTemplate="header">
+                Detalles
+            </ng-template>
+            <ng-template let-report="rowData" pTemplate="body">
+                <button type="button" class="btn btn-outline-primary" pButton (click)="pasarDatos(report)">más</button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+
+    <table class="table table-striped" *ngIf="ventana==2">
+        <thead>
+            <tr>
+                <th>Nombre de Ruta</th>
+                <th>Dirección Parada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detalle of detalle1">
+                <td>{{detalle.nombreRuta}}</td>
+                <td>{{detalle.direccionParada}}</td>
+                <th><button class="btn btn-outline-primary" (click)="pasarMasDatos(detalle)">Más</button></th>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-outline-primary" (click)="ventana=1" *ngIf="ventana==2">Regresar</button>
+    <table class="table table-striped" *ngIf="ventana==3">
+        <thead>
+            <tr>
+                <th>Nombre de Alumno</th>
+                <th>Dirección Parada</th>
+                <th>Asciende - Desciende</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detalle of detalle2">
+                <td>{{detalle.nombreAlumno}}</td>
+                <td>{{detalle.direccionParada}}</td>
+                <td>{{detalle.asciendeDesciende}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-outline-primary" (click)="ventana=2" *ngIf="ventana==3">Regresar</button>
+    <button class="btn btn-warning"> Exportar a excel</button>
+    <button class="btn btn-danger"> Imprimir</button>
+
+
+    <!--<a class="btn btn-outline-primary" [routerLink]="['/edit-alumnos']">Agregar <span class="sr-only">(current)</span></a>-->
+    <a [routerLink]="['/reportes']" class="btn btn-outline-danger" *ngIf="ventana==1"> Regresar</a>
+
+</block-ui>

@@ -1,0 +1,48 @@
+<h1>
+    Disciplinas</h1>
+<hr>
+
+<div class="container col-12">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Nombre de Disciplina" (keyup.enter)="buscarDisciplina(buscarNombreDisciplina.value)"
+            #buscarNombreDisciplina style="text-transform:uppercase">
+        <button (click)="buscarDisciplina(buscarNombreDisciplina.value)" class="btn btn-outline-primary my-2 my-sm-0"
+            type="button">Consultar</button>
+    </form>
+</div>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre de Disciplina</th>
+            <th>Hora Comienzo Lunes</th>
+            <th>Hora Término Lunes</th>
+            <th>Hora Comienzo Martes</th>
+            <th>Hora Término Martes</th>
+            <th>Hora Comienzo Miércoles</th>
+            <th>Hora Término Miércoles</th>
+            <th>Hora Comienzo Jueves</th>
+            <th>Hora Término Jueves</th>
+            <th>Hora Comienzo Viernes</th>
+            <th>Hora Término Viernes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let disciplina of disciplinas">
+            <td>{{disciplina.nombreDisciplina}}</td>
+            <td>{{disciplina.horaComienzoLunes}}</td>
+            <td>{{disciplina.horaTerminoLunes}}</td>
+            <td>{{disciplina.horaComienzoMartes}}</td>
+            <td>{{disciplina.horaTerminoMartes}}</td>
+            <td>{{disciplina.horaComienzoMiercoles}}</td>
+            <td>{{disciplina.horaTerminoMiercoles}}</td>
+            <td>{{disciplina.horaComienzoJueves}}</td>
+            <td>{{disciplina.horaTerminoJueves}}</td>
+            <td>{{disciplina.horaComienzoViernes}}</td>
+            <td>{{disciplina.horaTerminoViernes}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-outline-primary" [routerLink]="['/edit-disciplinas']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>

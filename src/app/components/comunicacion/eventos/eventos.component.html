@@ -1,0 +1,68 @@
+<block-ui>
+    <h1>
+        Eventos</h1>
+    <hr>
+
+    <div class="container col-12">
+      <!-- <div class="col-4">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Fecha Inicio" (keyup.enter)="buscarEvento(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+              #buscarFechaInicio>
+          <div class="input-group-addon" (click)="d.toggle()">
+              <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+          </div>
+      </div>
+      </div> -->
+
+
+        <form class="form-inline my-2 my-lg-0">
+          <div class="col-3">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Fecha Inicio" (keyup.enter)="buscarEvento(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+                  #buscarFechaInicio ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-addon" (click)="d.toggle()">
+                      <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                  </div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Fecha Fin" (keyup.enter)="buscarEvento(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+                  #buscarFechaFin ngbDatepicker #dat="ngbDatepicker">
+                  <div class="input-group-addon" (click)="dat.toggle()">
+                      <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                  </div>
+            </div>
+          </div>
+
+            <button (click)="buscarEvento(buscarFechaInicio.value+';'+buscarFechaFin.value)" class="btn btn-outline-primary my-2 my-sm-0"
+                type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <!-- <th>Título</th> -->
+                <th>Mensaje Corto</th>
+                <th>Mensaje Largo</th>
+                <th>Escuela</th>
+                <th>Estatus</th>
+                <th>Fecha de Evento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let evento of eventos">
+                <!-- <td>{{evento.titulo}}</td> -->
+                <td>{{evento.mensajeCorto}}</td>
+                <td>{{evento.mensajeLargo}}</td>
+                <td>{{evento.escuela}}</td>
+                <td>{{evento.estatus}}</td>
+                <td>{{evento.evento}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-outline-primary" [routerLink]="['/edit-eventos']">Agregar <span class="sr-only">(current)</span></a>
+    <a [routerLink]="['/comunicacion']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

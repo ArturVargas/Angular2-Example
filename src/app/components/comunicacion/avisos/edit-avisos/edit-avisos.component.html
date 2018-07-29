@@ -1,0 +1,83 @@
+<h4>
+    Agregar <small>Avisos</small></h4>
+<hr>
+<form role="form" name="editTituloForm" id="editTituloForm" (ngSubmit)="guardarCambios()" #editTituloForm="ngForm" novalidate>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!titul.valid && titul.touched}">
+        <label class="col-2 col-form-label">Título</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Título" name="titul" [(ngModel)]="aviso.titulo" required
+                autofocus #titul="ngModel">
+            <div *ngIf="titul.errors && (titul.dirty || titul.touched)" class="form-control-feedback">
+                <div [hidden]="!titul.errors.required">
+                    El título es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!mensajeCorto.valid && mensajeCorto.touched}">
+        <label class="col-2 col-form-label">Mensaje Corto</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Mensaje Corto" name="mensajeCorto" [(ngModel)]="aviso.mensajeCorto"
+                required autofocus #mensajeCorto="ngModel">
+            <div *ngIf="mensajeCorto.errors && (mensajeCorto.dirty || mensajeCorto.touched)" class="form-control-feedback">
+                <div [hidden]="!mensajeCorto.errors.required">
+                    El mensaje corto es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!mensajeLargo.valid && mensajeLargo.touched}">
+        <label class="col-2 col-form-label">Mensaje Largo</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Mensaje Largo" name="mensajeLargo" [(ngModel)]="aviso.mensajeLargo"
+                required autofocus #mensajeLargo="ngModel">
+            <div *ngIf="mensajeLargo.errors && (mensajeLargo.dirty || mensajeLargo.touched)" class="form-control-feedback">
+                <div [hidden]="!mensajeLargo.errors.required">
+                    El mensaje largo es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!escuela.valid && escuela.touched}">
+        <label class="col-2 col-form-label">Escuela</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Escuela" name="escuela" [(ngModel)]="aviso.escuela" required autofocus
+                #escuela="ngModel">
+            <div *ngIf="escuela.errors && (escuela.dirty || escuela.touched)" class="form-control-feedback">
+                <div [hidden]="!escuela.errors.required">
+                    La escuela es requerida
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!sistemaOperativo.valid && sistemaOperativo.touched}">
+        <label class="col-2 col-form-label">Sistema Operativo</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Sistema Operativo" name="sistemaOperativo" [(ngModel)]="aviso.sistemaOperativo"
+                required autofocus #sistemaOperativo="ngModel">
+            <div *ngIf="sistemaOperativo.errors && (sistemaOperativo.dirty || sistemaOperativo.touched)" class="form-control-feedback">
+                <div [hidden]="!sistemaOperativo.errors.required">
+                    El sistema operativo es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="editTituloForm.invalid">
+                Guardar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/avisos']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

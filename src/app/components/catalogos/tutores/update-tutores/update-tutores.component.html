@@ -1,0 +1,130 @@
+<h4>
+
+    Actualizar <small>Tutor</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['noFamilia'].valid && forma.controls['noFamilia'].touched}">
+        <label class="col-2 col-form-label">Número de Familia</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="No. de Familia" formControlName="noFamilia" [(ngModel)]="tutor.noFamilia" style="text-transform:uppercase">
+            <div *ngIf="forma.get('noFamilia').errors?.required && forma.controls['noFamilia'].touched" class="form-control-feedback">
+                El número de familia es requerido
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoPaternoTutor'].valid && forma.controls['apellidoPaternoTutor'].touched}">
+        <label class="col-2 col-form-label">Apellido Paterno</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Apellido Paterno" formControlName="apellidoPaternoTutor" [(ngModel)]="tutor.apellidoPaternoTutor" style="text-transform:uppercase">
+            <div *ngIf="forma.get('apellidoPaternoTutor').errors?.required && forma.controls['apellidoPaternoTutor'].touched" class="form-control-feedback">
+                El apellido paterno es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoMaternoTutor'].valid && forma.controls['apellidoMAternoTutor'].touched}">
+        <label class="col-2 col-form-label">Apellido Materno</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Apellido Materno" formControlName="apellidoMaternoTutor" [(ngModel)]="tutor.apellidoMaternoTutor" style="text-transform:uppercase">
+            <div *ngIf="forma.get('apellidoMaternoTutor').errors?.required  && forma.controls['apellidoMaternoTutor'].touched" class="form-control-feedback">
+                El apellido materno es requerido
+                <!-- name="apellido"
+              [ngModel]="usuario.apellido" -->
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreTutor'].valid && forma.controls['nombreTutor'].touched}">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Nombre" formControlName="nombreTutor" [(ngModel)]="tutor.nombreTutor" style="text-transform:uppercase">
+            <div *ngIf="forma.get('nombreTutor').errors?.required && forma.controls['nombreTutor'].touched" class="form-control-feedback">
+                El nombre es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['genero'].valid && forma.controls['genero'].touched}">
+        <label class="col-2 col-form-label">Género</label>
+        <div class="col-8">
+            <select class="form-control" name="gener" [(ngModel)]="tutor.genero" required autofocus formControlName="genero" style="text-transform:uppercase">
+                <option *ngFor="let c of generr" [ngValue]="c.name">{{c.nombre}}</option>
+                </select>
+            <div *ngIf="forma.get('genero').errors?.required && forma.controls['genero'].touched"
+                class="form-control-feedback">
+                El género es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['correoFamilia'].valid && forma.controls['correoFamilia'].touched}">
+        <label class="col-2 col-form-label">Email Familia</label>
+        <div class="col-8">
+            <input class="form-control" type="email" placeholder="Email Familia" formControlName="correoFamilia" [(ngModel)]="tutor.correoFamilia">
+            <div *ngIf="forma.get('correoFamilia').errors?.required && forma.controls['correoFamilia'].touched" class="form-control-feedback">
+                El email de la Familia es requerido
+                <!-- name="apellido"
+              [ngModel]="usuario.apellido" -->
+            </div>
+        </div>
+    </div>
+
+    <!--FECHA DE NACIMIENTO-->
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['fechaNacimientoTutor'].valid && forma.controls['fechaNacimientoTutor'].touched}">
+        <label class="col-2 col-form-label">Fecha de Nacimiento</label>
+        <div class="col-8">
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="fechaNacimientoTutor" [(ngModel)]="tutor.fechaCalendario"
+                    ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-addon" (click)="d.toggle()">
+                    <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </div>
+            </div>
+            <div *ngIf="forma.get('fechaNacimientoTutor').errors?.required && forma.controls['fechaNacimientoTutor'].touched" class="form-control-feedback">
+                La fecha de nacimiento es requerida es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['telefonoLocalTutor'].valid && forma.controls['telefonoLocalTutor'].touched}">
+        <label class="col-2 col-form-label">Teléfono Fijo</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Teléfono fijo" formControlName="telefonoLocalTutor" [(ngModel)]="tutor.telefonoLocalTutor" maxlength="10">
+            <div *ngIf="forma.get('telefonoLocalTutor').errors?.required && forma.controls['telefonoLocalTutor'].touched" class="form-control-feedback">
+                El teléfono fijo es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['telefonoMovilTutor'].valid && forma.controls['telefonoMovilTutor'].touched}">
+        <label class="col-2 col-form-label">Teléfono Celular</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Teléfono Celular" formControlName="telefonoMovilTutor" [(ngModel)]="tutor.telefonoMovilTutor" maxlength="10">
+            <div *ngIf="forma.get('telefonoMovilTutor').errors?.required && forma.controls['telefonoMovilTutor'].touched" class="form-control-feedback">
+                El teléfono Celular es requerido
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Actualizar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/tutores']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

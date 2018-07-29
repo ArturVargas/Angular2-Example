@@ -1,0 +1,73 @@
+<block-ui>
+    <h4>
+        Actualizar <small>Conductor</small>
+    </h4>
+    <hr>
+    <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoPaternoConductor'].valid && forma.controls['apellidoPaternoConductor'].touched}">
+            <label class="col-2 col-form-label">Apellido Paterno</label>
+            <div class="col-8">
+
+                <input style="text-transform:uppercase" class="form-control" type="text" placeholder="Apellido Paterno" formControlName="apellidoPaternoConductor" [(ngModel)]="conductor.apellidoPaternoConductor">
+                <div *ngIf="forma.get('apellidoPaternoConductor').errors?.required && forma.controls['apellidoPaternoConductor'].touched"
+                    class="form-control-feedback">
+                    El apellido paterno es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoMaternoConductor'].valid && forma.controls['apellidoMaternoConductor'].touched}">
+            <label class="col-2 col-form-label">Apellido Materno</label>
+            <div class="col-8">
+
+                <input style="text-transform:uppercase" class="form-control" type="text" placeholder="Apellido Materno" formControlName="apellidoMaternoConductor" [(ngModel)]="conductor.apellidoMaternoConductor">
+                <div *ngIf="forma.get('apellidoMaternoConductor').errors?.required  && forma.controls['apellidoMaternoConductor'].touched"
+                    class="form-control-feedback">
+                    El apellido materno es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreConductor'].valid && forma.controls['nombreConductor'].touched}">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+
+                <input style="text-transform:uppercase" class="form-control" type="text" placeholder="Nombre" formControlName="nombreConductor" [(ngModel)]="conductor.nombreConductor">
+                <div *ngIf="forma.get('nombreConductor').errors?.required && forma.controls['nombreConductor'].touched" class="form-control-feedback">
+                    El nombre es requerido
+                </div>
+            </div>
+        </div>
+
+      <!--  <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['direccionConductor'].valid && forma.controls['direccionConductor'].touched}">
+            <label class="col-2 col-form-label">Dirección de Conductor</label>
+            <div class="col-8">
+                <input style="text-transform:uppercase" class="form-control" type="text" placeholder="Dirección de Conductor" formControlName="direccionConductor" [(ngModel)]="conductor.direccionConductor">
+                <div *ngIf="forma.get('direccionConductor').errors?.required && forma.controls['direccionConductor'].touched" class="form-control-feedback">
+                    La dirección del conductor es requerida
+                </div>
+            </div>
+        </div>-->
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['telefonoConductor'].valid && forma.controls['telefonoConductor'].touched}">
+            <label class="col-2 col-form-label">Teléfono del conductor</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="TELÉFONO" formControlName="telefonoConductor" [(ngModel)]="conductor.telefonoConductor" maxlength="10">
+                <div *ngIf="forma.get('telefonoConductor').errors?.required && forma.controls['telefonoConductor'].touched" class="form-control-feedback">
+                    El teléfono del conductor es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-offset-8">
+                <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Actualizar
+            </button>
+                <label>&nbsp;</label>
+                <a [routerLink]="['/conductores']" class="btn btn-outline-danger"> Regresar</a>
+            </div>
+        </div>
+    </form>
+</block-ui>

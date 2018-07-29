@@ -1,0 +1,49 @@
+<block-ui>
+    <h1>
+        Consultar Autorizaciones</h1>
+    <hr>
+
+    <div class="container col-12">
+        <form class="form-inline my-2 my-lg-0">
+            <div class="input-group mr-sm-2">
+                <input class="form-control" placeholder="Fecha Inicio: yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (keyup.enter)="buscarAutorizacion(fechaInicio.value+';'+fechaFin.value+';'+noFamilia.value)"
+                    #fechaInicio>
+                <div class="input-group-addon" (click)="d.toggle()">
+                    <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </div>
+            </div>
+            <div class="input-group mr-sm-2">
+                <input class="form-control" placeholder="Fecha Fin: yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker" (keyup.enter)="buscarAutorizacion(fechaInicio.value+';'+fechaFin.value+';'+noFamilia.value)"
+                    #fechaFin>
+                <div class="input-group-addon" (click)="d2.toggle()">
+                    <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </div>
+            </div>
+            <input class="form-control mr-sm-2" type="text" placeholder="No. de Familia" (keyup.enter)="buscarAutorizacion(fechaInicio.value+';'+fechaFin.value+';'+noFamilia.value)"
+                #noFamilia>
+            <button (click)="buscarAutorizacion(fechaInicio.value+';'+fechaFin.value+';'+noFamilia.value)" class="btn btn-outline-primary my-2 my-sm-0"
+                type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+
+    <p-dataTable [value]="autorizaciones" [rows]="10" [paginator]="true" [(selection)]="selectedReport" dataKey="vin" [pageLinks]="3"
+        [rowsPerPageOptions]="[5,10,20]">
+        <p-column field="fechaSolicitud" header="Fecha de Envío"></p-column>
+        <p-column field="fechaAceptaSolicitud" header="Fecha de Respuesta"></p-column>
+        <p-column field="noFamiliaSolicita" header="No. de Familia de Solicitante"></p-column>
+        <p-column field="nombreTutorEnviaSolicitud" header="Tutor que invita"></p-column>
+        <p-column field="nombreTutorAceptaSolicitud" header="Tutor Invitado"></p-column>
+        <p-column field="nombreAlumno" header="Alumno que invita"></p-column>
+        <p-column field="nombreRuta" header="Nombre Ruta"></p-column>
+        <p-column field="horarioRuta" header="Horario"></p-column>
+        <p-column field="direccionParada" header="Dirección de la parada"></p-column>
+        <p-column field="descipcionAccion" header="Descripción de la acción"></p-column>
+        <p-column field="dia" header="Día"></p-column>
+        <p-column field="noAutobus" header="Número de Autobus"></p-column>
+    </p-dataTable>
+
+    <!--<a class="btn btn-outline-primary" [routerLink]="['/edit-alumnos']">Agregar <span class="sr-only">(current)</span></a>-->
+    <a [routerLink]="['/reportes']" class="btn btn-outline-danger"> Regresar</a>
+
+</block-ui>

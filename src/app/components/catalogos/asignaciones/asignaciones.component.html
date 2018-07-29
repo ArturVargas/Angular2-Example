@@ -1,0 +1,166 @@
+<block-ui>
+    <h1>
+        Asociación de direcciones por día del alumno</h1>
+    <hr>
+
+    <div class="container col-12" *ngIf="estado==1">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Nombre Alumno" (keyup.enter)="buscarAsignacionAlumno(nombreAlumno.value)"
+                #nombreAlumno>
+            <button (click)="buscarAsignacionAlumno(nombreAlumno.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+
+    <p-dataTable [value]="asignaciones" [rows]="10" [paginator]="true" dataKey="vin" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+        *ngIf="estado==1">
+        <p-column field="nombreAlumno" header="Alumno "></p-column>
+        <p-column>
+            <ng-template pTemplate="header">
+            </ng-template>
+            <ng-template let-report="rowData" pTemplate="body">
+                <button type="button" class="btn btn-outline-primary" pButton (click)="seleccionarAlumnoDatos(report)">Seleccionar</button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+        <h3 *ngIf="estado==2">{{nameAlumno}} - Ascenso</h3>
+        <div class="form-group row" [ngClass]="{' has-danger':!lunes.valid && lunes.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Lunes</label>
+            <div class="col-8">
+                <select class="form-control" name="lunes" [(ngModel)]="semana.lunes" required autofocus #lunes="ngModel" [disabled]="acenso">
+                <option  *ngFor="let c of asignacionesRuta" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="lunes.errors && (lunes.dirty || lunes.touched)" class="form-control-feedback">
+                    <div [hidden]="!lunes.errors.required">
+                        La ruta del lunes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!martes.valid && martes.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Martes</label>
+            <div class="col-8">
+                <select class="form-control" name="martes" [(ngModel)]="semana.martes" required autofocus #martes="ngModel" [disabled]="acenso">
+                <option *ngFor="let c of asignacionesRuta" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="martes.errors && (martes.dirty || martes.touched)" class="form-control-feedback">
+                    <div [hidden]="!martes.errors.required">
+                        La ruta del martes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!miercoles.valid && miercoles.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Miércoles</label>
+            <div class="col-8">
+                <select class="form-control" name="miercoles" [(ngModel)]="semana.miercoles" required autofocus #miercoles="ngModel" [disabled]="acenso">
+                <option *ngFor="let c of asignacionesRuta" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="miercoles.errors && (miercoles.dirty || miercoles.touched)" class="form-control-feedback">
+                    <div [hidden]="!miercoles.errors.required">
+                        La ruta del miércoles es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!jueves.valid && jueves.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Jueves</label>
+            <div class="col-8">
+                <select class="form-control" name="lunes" [(ngModel)]="semana.jueves" required autofocus #jueves="ngModel" [disabled]="acenso">
+                <option *ngFor="let c of asignacionesRuta" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="jueves.errors && (jueves.dirty || jueves.touched)" class="form-control-feedback">
+                    <div [hidden]="!jueves.errors.required">
+                        La ruta del jueves es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!viernes.valid && viernes.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Viernes</label>
+            <div class="col-8">
+                <select class="form-control" name="viernes" [(ngModel)]="semana.viernes" required autofocus #viernes="ngModel" [disabled]="acenso">
+                <option *ngFor="let c of asignacionesRuta" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="viernes.errors && (viernes.dirty || viernes.touched)" class="form-control-feedback">
+                    <div [hidden]="!viernes.errors.required">
+                        La ruta del viernes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary" pButton (click)="registrar(1)" *ngIf="estado==2" [disabled]="acenso">Guardar</button>
+        <br>
+        <br>
+        <h3 *ngIf="estado==2">Descenso </h3>
+        <div class="form-group row" [ngClass]="{' has-danger':!lunes1.valid && lunes1.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Lunes</label>
+            <div class="col-8">
+                <select class="form-control" name="lunes1" [(ngModel)]="semana.lunes1" required autofocus #lunes1="ngModel" [disabled]="desenso">
+                <option  *ngFor="let c of asignacionesRutaDes" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="lunes1.errors && (lunes1.dirty || lunes1.touched)" class="form-control-feedback">
+                    <div [hidden]="!lunes1.errors.required">
+                        La ruta del lunes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!martes2.valid && martes2.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Martes</label>
+            <div class="col-8">
+                <select class="form-control" name="martes2" [(ngModel)]="semana.martes2" required autofocus #martes2="ngModel" [disabled]="desenso">
+                <option *ngFor="let c of asignacionesRutaDes" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="martes2.errors && (martes2.dirty || martes2.touched)" class="form-control-feedback">
+                    <div [hidden]="!martes2.errors.required">
+                        La ruta del martes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!miercoles3.valid && miercoles3.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Miércoles</label>
+            <div class="col-8">
+                <select class="form-control" name="miercoles3" [(ngModel)]="semana.miercoles3" required autofocus #miercoles3="ngModel" [disabled]="desenso">
+                <option *ngFor="let c of asignacionesRutaDes" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="miercoles3.errors && (miercoles3.dirty || miercoles3.touched)" class="form-control-feedback">
+                    <div [hidden]="!miercoles3.errors.required">
+                        La ruta del miércoles es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!jueves4.valid && jueves4.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Jueves</label>
+            <div class="col-8">
+                <select class="form-control" name="lunes" [(ngModel)]="semana.jueves4" required autofocus #jueves4="ngModel" [disabled]="desenso">
+                <option *ngFor="let c of asignacionesRutaDes" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="jueves4.errors && (jueves4.dirty || jueves4.touched)" class="form-control-feedback">
+                    <div [hidden]="!jueves4.errors.required">
+                        La ruta del jueves es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!viernes5.valid && viernes5.touched}" *ngIf="estado==2">
+            <label class="col-2 col-form-label">Ruta Viernes</label>
+            <div class="col-8">
+                <select class="form-control" name="viernes5" [(ngModel)]="semana.viernes5" required autofocus #viernes5="ngModel" [disabled]="desenso">
+                <option *ngFor="let c of asignacionesRutaDes" [ngValue]="c">{{c.nombreRuta}}</option>
+            </select>
+                <div *ngIf="viernes5.errors && (viernes5.dirty || viernes5.touched)" class="form-control-feedback">
+                    <div [hidden]="!viernes5.errors.required">
+                        La ruta del viernes es requerida
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-outline-primary" pButton (click)="registrar(2)" *ngIf="estado==2">Guardar</button>
+    <a [routerLink]="['/catalogos']" class="btn btn-outline-danger" *ngIf="estado==1"> Regresar</a>
+    <button type="button" class="btn btn-outline-danger" pButton (click)="cambio()" *ngIf="estado==2">Regresar</button>
+</block-ui>

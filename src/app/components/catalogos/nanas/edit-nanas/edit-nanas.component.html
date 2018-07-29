@@ -1,0 +1,75 @@
+<block-ui>
+    <h4>
+        Agregar <small>Nana</small></h4>
+    <hr>
+    <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoPaternoNana'].valid && forma.controls['apellidoPaternoNana'].touched}">
+            <label class="col-2 col-form-label">Apellido Paterno</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Apellido Paterno" formControlName="apellidoPaternoNana" [(ngModel)]="nana.apellidoPaternoNana" style="text-transform:uppercase">
+                <div *ngIf="forma.get('apellidoPaternoNana').errors?.required && forma.controls['apellidoPaternoNana'].touched" class="form-control-feedback">
+                    El apellido paterno es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['apellidoMaternoNana'].valid && forma.controls['apellidoMaternoNana'].touched}">
+            <label class="col-2 col-form-label">Apellido Materno</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Apellido Materno" formControlName="apellidoMaternoNana" [(ngModel)]="nana.apellidoMaternoNana" style="text-transform:uppercase">
+                <div *ngIf="forma.get('apellidoMaternoNana').errors?.required  && forma.controls['apellidoMaternoNana'].touched" class="form-control-feedback">
+                    El apellido materno es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreNana'].valid && forma.controls['nombreNana'].touched}">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombreNana" [(ngModel)]="nana.nombreNana" style="text-transform:uppercase">
+                <div *ngIf="forma.get('nombreNana').errors?.required && forma.controls['nombreNana'].touched" class="form-control-feedback">
+                    El nombre es requerido
+                </div>
+            </div>
+        </div>
+
+      <!-- <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['direccionNana'].valid && forma.controls['direccionNana'].touched}">
+            <label class="col-2 col-form-label">Dirección</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Dirección" formControlName="direccionNana" [(ngModel)]="nana.direccionNana" style="text-transform:uppercase">
+                <div *ngIf="forma.get('direccionNana').errors?.required && forma.controls['direccionNana'].touched" class="form-control-feedback">
+                    La dirección es requerida
+                </div>
+            </div>
+        </div>-->
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['telefonoNana'].valid && forma.controls['telefonoNana'].touched}">
+            <label class="col-2 col-form-label">Teléfono</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="TELÉFONO" formControlName="telefonoNana" [(ngModel)]="nana.telefonoNana" maxlength="10" pattern="[0-9]{1,10}">
+                <div *ngIf="forma.get('telefonoNana').errors?.required && forma.controls['telefonoNana'].touched" class="form-control-feedback">
+                    El teléfono es requerido
+                </div>
+                <div *ngIf="forma.get('telefonoNana').errors?.pattern">
+                    Solo Números.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-offset-8">
+                <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Guardar
+            </button>
+                <label>&nbsp;</label>
+                <a [routerLink]="['/nanas']" class="btn btn-outline-danger"> Regresar</a>
+            </div>
+        </div>
+    </form>
+</block-ui>

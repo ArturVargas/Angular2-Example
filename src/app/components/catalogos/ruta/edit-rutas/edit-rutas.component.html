@@ -1,0 +1,30 @@
+<h4>
+
+    Agregar <small>Ruta</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreRuta'].valid && forma.controls['nombreRuta'].touched}">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Nombre" formControlName="nombreRuta" [(ngModel)]="ruta.nombreRuta" style="text-transform:uppercase">
+            <div *ngIf="forma.get('nombreRuta').errors?.required && forma.controls['nombreRuta'].touched" class="form-control-feedback">
+                El nombre de la ruta es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Guardar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/ruta']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,66 @@
+<block-ui>
+<h2>Conductores</h2>
+<hr>
+
+  <div class="container col-12">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Nombre"(keyup.enter)="buscarConductor(buscarNombre.value+';'+buscarApellidoPaterno.value+';'+buscarApellidoMaterno.value)" #buscarNombre style="text-transform:uppercase">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Paterno"(keyup.enter)="buscarConductor(buscarNombre.value+';'+buscarApellidoPaterno.value+';'+buscarApellidoMaterno.value)" #buscarApellidoPaterno style="text-transform:uppercase">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Materno" (keyup.enter)="buscarConductor(buscarNombre.value+';'+buscarApellidoPaterno.value+';'+buscarApellidoMaterno.value)"#buscarApellidoMaterno style="text-transform:uppercase">
+        <button (click)="buscarConductor(buscarNombre.value+';'+buscarApellidoPaterno.value+';'+buscarApellidoMaterno.value)"
+        class="btn btn-outline-primary my-2 my-sm-0" type="button">Consultar</button>
+      </form>
+  </div>
+<br>
+
+
+<!--<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of conductores" >
+      <td>{{item.idConductor}}</td>
+      <td>{{item.nombreConductor}}</td>
+      <td>{{item.apellidoPaternoConductor}}</td>
+      <td>{{item.apellidoMaternoConductor}}</td>
+      <td>{{item.direccionConductor}}</td>
+      <td>{{item.telefonoConductor}}</td>
+    </tr>
+  </tbody>
+</table>-->
+
+<p-dataTable [value]="conductores" [rows]="10" [paginator]="true" dataKey="vin" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <!--<p-column field="idConductor" header="ID"></p-column>-->
+
+    <p-column field="apellidoPaternoConductor" header="Apellido Paterno"></p-column>
+    <p-column field="apellidoMaternoConductor" header="Apellido Materno"></p-column>
+      <p-column field="nombreConductor" header="Nombre"></p-column>
+    <!--<p-column field="direccionConductor" header="Dirección"></p-column>-->
+    <p-column field="telefonoConductor" header="Teléfono"></p-column>
+    <p-column>
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template let-report="rowData" pTemplate="body">
+            <button type="button" class="btn btn-outline-primary" pButton (click)="pasarDatos(report)">Actualizar</button>
+        </ng-template>
+    </p-column>
+    <p-column>
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template let-report="rowData" pTemplate="body">
+            <button type="button" class="btn btn-outline-danger" pButton (click)="eliminarDatos(report)">Eliminar</button>
+        </ng-template>
+    </p-column>
+</p-dataTable>
+
+<a class="btn btn-outline-primary" [routerLink]="['/edit-conductores']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

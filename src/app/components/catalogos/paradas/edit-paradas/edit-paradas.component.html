@@ -1,0 +1,30 @@
+<h4>
+
+    Agregar <small>Parada</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreParada'].valid && forma.controls['nombreParada'].touched}">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Nombre" formControlName="nombreParada" [(ngModel)]="parada.nombreParada">
+            <div *ngIf="forma.get('nombreParada').errors?.required && forma.controls['nombreParada'].touched" class="form-control-feedback">
+                El nombre de la parada es requerido
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Guardar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/paradas']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

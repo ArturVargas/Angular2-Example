@@ -1,0 +1,124 @@
+<h4>
+
+    Actualizar <small>Disciplina</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaComienzoLunes'].valid && forma.controls['horaComienzoLunes'].touched}">
+        <label class="col-2 col-form-label">Hora Comienzo Lunes</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Hora Comienzo Lunes" formControlName="horaComienzoLunes" [(ngModel)]="disciplina.horaComienzoLunes">
+            <div *ngIf="forma.get('horaComienzoLunes').errors?.required && forma.controls['horaComienzoLunes'].touched" class="form-control-feedback">
+                La hora de comienzo es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaTerminoLunes'].valid && forma.controls['horaTerminoLunes'].touched}">
+        <label class="col-2 col-form-label">Hora Término Lunes</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Hora Término Lunes" formControlName="horaTerminoLunes" [(ngModel)]="disciplina.horaTerminoLunes">
+            <div *ngIf="forma.get('horaTerminoLunes').errors?.required  && forma.controls['horaTerminoLunes'].touched" class="form-control-feedback">
+                La hora de término es requerida
+                <!-- name="apellido"
+              [ngModel]="usuario.apellido" -->
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaComienzoMartes'].valid && forma.controls['horaComienzoMartes'].touched}">
+        <label class="col-2 col-form-label">Hora Comienzo Martes</label>
+        <div class="col-8">
+
+            <input class="form-control" type="text" placeholder="Hora Comienzo Martes" formControlName="horaComienzoMartes" [(ngModel)]="disciplina.horaComienzoMartes">
+            <div *ngIf="forma.get('horaComienzoMartes').errors?.required && forma.controls['horaComienzoMartes'].touched" class="form-control-feedback">
+                La hora de comienzo es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaTerminoMartes'].valid && forma.controls['horaTerminoMartes'].touched}">
+        <label class="col-2 col-form-label">Hora Término Martes</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Término Martes" formControlName="horaTerminoMartes" [(ngModel)]="disciplina.horaTerminoMartes">
+            <div *ngIf="forma.get('horaTerminoMartes').errors?.required && forma.controls['horaTerminoMartes'].touched" class="form-control-feedback">
+                La hora de término es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaComienzoMiercoles'].valid && forma.controls['horaComienzoMiercoles'].touched}">
+        <label class="col-2 col-form-label">Hora Comienzo Miércoles</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Comienzo Miércoles" formControlName="horaComienzoMiercoles" [(ngModel)]="disciplina.horaComienzoMiercoles">
+            <div *ngIf="forma.get('horaComienzoMiercoles').errors?.required && forma.controls['horaComienzoMiercoles'].touched" class="form-control-feedback">
+                La hora de comienzo es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaTerminoMiercoles'].valid && forma.controls['horaTerminoMiercoles'].touched}">
+        <label class="col-2 col-form-label">Hora Término Miércoles</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Término Miércoles" formControlName="horaTerminoMiercoles" [(ngModel)]="disciplina.horaTerminoMiercoles">
+            <div *ngIf="forma.get('horaTerminoMiercoles').errors?.required && forma.controls['horaTerminoMiercoles'].touched" class="form-control-feedback">
+                La hora de término es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaComienzoJueves'].valid && forma.controls['horaComienzoJueves'].touched}">
+        <label class="col-2 col-form-label">Hora Comienzo Jueves</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Comienzo Jueves" formControlName="horaComienzoJueves" [(ngModel)]="disciplina.horaComienzoJueves">
+            <div *ngIf="forma.get('horaComienzoJueves').errors?.required && forma.controls['horaComienzoJueves'].touched" class="form-control-feedback">
+                La hora de comienzo es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaTerminoJueves'].valid && forma.controls['horaTerminoJueves'].touched}">
+        <label class="col-2 col-form-label">Hora Término Jueves</label>
+        <div class="col-8">
+            <input class="form-control" type="email" placeholder="Hora Término Jueves" formControlName="horaTerminoJueves" [(ngModel)]="disciplina.horaTerminoJueves">
+            <div *ngIf="forma.get('horaTerminoJueves').errors?.required && forma.controls['horaTerminoJueves'].touched" class="form-control-feedback">
+                La hora de término es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaComienzoViernes'].valid && forma.controls['horaComienzoViernes'].touched}">
+        <label class="col-2 col-form-label">Hora Comienzo Viernes</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Comienzo Viernes" formControlName="horaComienzoViernes" [(ngModel)]="disciplina.horaComienzoViernes">
+            <div *ngIf="forma.get('horaComienzoViernes').errors?.required && forma.controls['horaComienzoViernes'].touched" class="form-control-feedback">
+                La hora de comienzo es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['horaTerminoViernes'].valid && forma.controls['horaTerminoViernes'].touched}">
+        <label class="col-2 col-form-label">Hora Término Viernes</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Hora Término Viernes" formControlName="horaTerminoViernes" [(ngModel)]="disciplina.horaTerminoViernes">
+            <div *ngIf="forma.get('horaTerminoViernes').errors?.required && forma.controls['horaTerminoViernes'].touched" class="form-control-feedback">
+                La hora de término es requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-offset-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Actualizar
+            </button>
+            <label>&nbsp;</label>
+            <a [routerLink]="['/disciplinas']" class="btn btn-outline-danger"> Regresar</a>
+        </div>
+
+    </div>
+
+</form>

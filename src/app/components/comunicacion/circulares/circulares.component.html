@@ -1,0 +1,59 @@
+<block-ui>
+    <h1>
+        Circulares</h1>
+    <hr>
+
+    <div class="container col-12">
+        <form class="form-inline my-2 my-lg-0">
+
+          <div class="col-3">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Fecha Inicio" (keyup.enter)="buscarCircular(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+                  #buscarFechaInicio ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-addon" (click)="d.toggle()">
+                      <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                  </div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Fecha Fin" (keyup.enter)="buscarCircular(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+                  #buscarFechaFin ngbDatepicker #date="ngbDatepicker">
+                  <div class="input-group-addon" (click)="date.toggle()">
+                      <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                  </div>
+            </div>
+          </div>
+
+
+            <!-- <input class="form-control mr-sm-2" type="text" placeholder="Fecha Fin" (keyup.enter)="buscarCircular(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+                #buscarFechaFin> -->
+            <button (click)="buscarCircular(buscarFechaInicio.value+';'+buscarFechaFin.value)" class="btn btn-outline-primary my-2 my-sm-0"
+                type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <!-- <th>Título</th> -->
+                <th>Asunto</th>
+                <th>Texto</th>
+                <th>Escuela</th>
+                <th>Estatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let circular of circulares">
+                <!-- <td>{{circular.titulo}}</td> -->
+                <td>{{circular.mensajeCorto}}</td>
+                <td>{{circular.mensajeLargo}}</td>
+                <td>{{circular.escuela}}</td>
+                <td>{{circular.estatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-outline-primary" [routerLink]="['/edit-circulares']">Agregar <span class="sr-only">(current)</span></a>
+    <a [routerLink]="['/comunicacion']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

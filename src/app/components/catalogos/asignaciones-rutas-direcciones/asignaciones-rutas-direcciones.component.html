@@ -1,0 +1,56 @@
+<block-ui>
+    <h1>
+        Asociación de Paradas a las Rutas</h1>
+    <hr>
+
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-10" type="text" name="ruta" placeholder="Ruta" [(ngModel)]="rutaDireccion.nombreRuta"
+            autofocus #ruta="ngModel">
+           <!-- <div *ngIf="ruta.errors && ruta.touched || ruta.dirty" class="form-control-feedback">
+                <div [hidden]="ruta.errors.required">
+                    La dirección es requerida
+                </div>
+            </div>-->
+        </form>
+    </div>
+    <!--<div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Ruta" (keyup.enter)="buscarAsignacionRuta(ruta.value)" #ruta>
+            <button (click)="buscarAsignacionRuta(ruta.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!rute.valid && rute.touched}" *ngIf="rute==2">
+                <select class="form-control" name="rute" [(ngModel)]="ruta.nombreRuta" required autofocus #rute="ngModel">
+                    <option *ngFor="let c of rutas" [ngValue]="c.idRuta">{{c.nombreRuta}}</option>
+                </select>
+                <div *ngIf="rute.errors && (rute.dirty || rute.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        La ruta es requerida
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+    <br>
+    <div class="container col-12">
+        <form class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-4" type="text" placeholder="Parada" (keyup.enter)="buscarAsignacionDireccion(direccion.value)"
+                #direccion>
+            <button (click)="buscarAsignacionDireccion(direccion.value)" class="btn btn-outline-primary my-2 my-sm-0" type="button">Buscar</button>
+            <label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label><label>&nbsp;</label>
+            <div class="form-group row col-6" [ngClass]="{' has-danger':!bus.valid && bus.touched}" *ngIf="bus==2">
+                <select class="form-control" name="bus" [(ngModel)]="rutaDireccion.idDireccion" required autofocus #bus="ngModel">
+                    <option *ngFor="let c of direcciones" [ngValue]="c.idDireccion">{{c.calle}} no. Interior: {{c.numeroInterior}} no. Exterior {{c.numeroExterior}} C.P. {{c.codigoPostal}}, colonia {{c.colonia}}, estado: {{c.estado}}</option>
+                </select>
+                <div *ngIf="rute.errors && (bus.dirty || bus.touched)" class="form-control-feedback">
+                    <div [hidden]="!rute.errors.required">
+                        La parada es requerida
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <button type="button" class="btn btn-outline-primary" pButton (click)="guardarDatos()" ng-disabled="rutaDireccion.idDireccion!=undefined && rutaDireccion.idRuta!=undefined">Guardar</button>
+    <a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

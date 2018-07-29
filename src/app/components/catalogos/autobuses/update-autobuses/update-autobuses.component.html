@@ -1,0 +1,90 @@
+<block-ui>
+    <h4>
+        Actualizar <small>Autobús</small></h4>
+    <hr>
+    <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['noAutobus'].valid && forma.controls['noAutobus'].touched}">
+            <label class="col-2 col-form-label">Número de Autobús</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Número de Autobus" formControlName="noAutobus" [(ngModel)]="autobus.noAutobus">
+                <div *ngIf="forma.get('noAutobus').errors?.required && forma.controls['noAutobus'].touched" class="form-control-feedback">
+                    El número de autobús es requerido
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['nombreAutobus'].valid && forma.controls['nombreAutobus'].touched}">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombreAutobus" [(ngModel)]="autobus.nombreAutobus">
+                <div *ngIf="forma.get('nombreAutobus').errors?.required && forma.controls['nombreAutobus'].touched" class="form-control-feedback">
+                    El nombre es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['placaAutobus'].valid && forma.controls['placaAutobus'].touched}">
+            <label class="col-2 col-form-label">Placa</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Placa" formControlName="placaAutobus" [(ngModel)]="autobus.placaAutobus">
+                <div *ngIf="forma.get('placaAutobus').errors?.required && forma.controls['placaAutobus'].touched" class="form-control-feedback">
+                    La placa es requerida
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['marca'].valid && forma.controls['marca'].touched}">
+            <label class="col-2 col-form-label">Marca</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Marca" formControlName="marca" [(ngModel)]="autobus.marca">
+                <div *ngIf="forma.get('marca').errors?.required && forma.controls['marca'].touched" class="form-control-feedback">
+                    La marca es requerida
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['modelo'].valid && forma.controls['modelo'].touched}">
+            <label class="col-2 col-form-label">Modelo</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Modelo" formControlName="modelo" [(ngModel)]="autobus.modelo">
+                <div *ngIf="forma.get('modelo').errors?.required && forma.controls['modelo'].touched" class="form-control-feedback">
+                    El modelo es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['anio'].valid && forma.controls['anio'].touched}">
+            <label class="col-2 col-form-label">Año</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Año" formControlName="anio" [(ngModel)]="autobus.anio">
+                <div *ngIf="forma.get('anio').errors?.required && forma.controls['anio'].touched" class="form-control-feedback">
+                    El año es requerido
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{' has-danger':!forma.controls['capacidad'].valid && forma.controls['capacidad'].touched}">
+            <label class="col-2 col-form-label">Capacidad</label>
+            <div class="col-8">
+                <input class="form-control" type="email" placeholder="Capacidad" formControlName="capacidad" [(ngModel)]="autobus.capacidad">
+                <div *ngIf="forma.get('capacidad').errors?.required && forma.controls['capacidad'].touched" class="form-control-feedback">
+                    La capacidad es requerida
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-offset-8">
+                <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">
+                Actualizar
+            </button>
+                <label>&nbsp;</label>
+                <a [routerLink]="['/autobuses']" class="btn btn-outline-danger"> Regresar</a>
+            </div>
+        </div>
+    </form>
+</block-ui>

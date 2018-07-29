@@ -1,0 +1,37 @@
+<h1>
+    Avisos</h1>
+<hr>
+
+<div class="container col-12">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Fecha Inicio" (keyup.enter)="buscarAviso(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+            #buscarFechaInicio>
+        <input class="form-control mr-sm-2" type="text" placeholder="Fecha Fin" (keyup.enter)="buscarAviso(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+            #buscarFechaFin>
+        <button (click)="buscarAviso(buscarFechaInicio.value+';'+buscarFechaFin.value)"
+            class="btn btn-outline-primary my-2 my-sm-0" type="button">Consultar</button>
+    </form>
+</div>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Mensaje Corto</th>
+            <th>Mensaje Largo</th>
+            <th>Escuela</th>
+            <th>Estatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let aviso of avisos">
+            <td>{{aviso.titulo}}</td>
+            <td>{{aviso.mensajeCorto}}</td>
+            <td>{{aviso.mensajeLargo}}</td>
+            <td>{{aviso.escuela}}</td>
+            <td>{{aviso.estatus}}</td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-outline-primary" [routerLink]="['/edit-avisos']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/comunicacion']" class="btn btn-outline-danger"> Regresar</a>

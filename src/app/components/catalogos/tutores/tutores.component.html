@@ -1,0 +1,50 @@
+<block-ui>
+    <h1>
+        Tutores</h1>
+    <hr>
+
+    <div class="container col-12">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="ID Familia" (keyup.enter)="buscarTutor(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+                #buscarId style="text-transform:uppercase">
+            <input class="form-control mr-sm-2" type="text" placeholder="Nombre" (keyup.enter)="buscarTutor(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+                #buscarName style="text-transform:uppercase">
+            <input class="form-control mr-sm-2" type="text" placeholder="Apellido Paterno" (keyup.enter)="buscarTutor(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+                #buscarLastname style="text-transform:uppercase">
+            <input class="form-control mr-sm-2" type="text" placeholder="Apellido Materno" (keyup.enter)="buscarTutor(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+                #buscarLastnameTwo style="text-transform:uppercase">
+            <button (click)="buscarTutor(buscarId.value+';'+buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)" class="btn btn-outline-primary my-2 my-sm-0"
+                type="button">Consultar</button>
+        </form>
+    </div>
+    <br>
+
+    <p-dataTable [value]="tutores" [rows]="10" [paginator]="true" dataKey="vin" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+        <p-column field="noFamilia" header="No. de Familia "></p-column>
+        <p-column field="nombreTutor" header="Nombre "></p-column>
+        <p-column field="apellidoPaternoTutor" header="Apellido Paterno "></p-column>
+        <p-column field="apellidoMaternoTutor" header="Apellido Materno "></p-column>
+        <p-column field="genero" header="Género "></p-column>
+        <p-column field="correoFamilia" header="Correo Familia "></p-column>
+        <p-column field="telefonoLocalTutor" header="Fecha de Nacimiento "></p-column>
+        <p-column field="telefonoLocalTutor" header="Teléfono Fijo "></p-column>
+        <p-column>
+            <ng-template pTemplate="header">
+            </ng-template>
+            <ng-template let-report="rowData" pTemplate="body">
+                <button type="button" class="btn btn-outline-primary" pButton (click)="pasarDatos(report)">Actualizar</button>
+            </ng-template>
+        </p-column>
+        <p-column>
+            <ng-template pTemplate="header">
+            </ng-template>
+            <ng-template let-report="rowData" pTemplate="body">
+                <button type="button" class="btn btn-outline-danger" pButton (click)="eliminarDatos(report)">Eliminar</button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+
+    <a class="btn btn-outline-primary" [routerLink]="['/edit-tutores']">Agregar <span class="sr-only">(current)</span></a>
+    <a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+
+</block-ui>

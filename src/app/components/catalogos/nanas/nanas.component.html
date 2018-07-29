@@ -1,0 +1,68 @@
+<block-ui>
+<h1>
+    Nanas</h1>
+<hr>
+
+<div class="container col-12">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Nombre Nana" (keyup.enter)="buscarNana(buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarName style="text-transform:uppercase">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Paterno" (keyup.enter)="buscarNana(buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarLastname style="text-transform:uppercase">
+        <input class="form-control mr-sm-2" type="text" placeholder="Apellido Materno" (keyup.enter)="buscarNana(buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)"
+            #buscarLastnameTwo style="text-transform:uppercase">
+        <button (click)="buscarNana(buscarName.value+';'+buscarLastname.value+';'+buscarLastnameTwo.value)" class="btn btn-outline-primary my-2 my-sm-0"
+            type="button">Consultar</button>
+    </form>
+</div>
+<br>
+<!--<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Nana</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let nana of nanas">
+            <td>{{nana.idNana}}</td>
+            <td>{{nana.nombreNana}}</td>
+            <td>{{nana.apellidoPaternoNana}}</td>
+            <td>{{nana.apellidoMaternoNana}}</td>
+            <td>{{nana.direccionNana}}</td>
+            <td>{{nana.telefonoNana}}</td>
+        </tr>
+    </tbody>
+</table>-->
+
+<p-dataTable [value]="nanas" [rows]="10" [paginator]="true" dataKey="vin" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <!--<p-column field="idNana" header="ID Nana"></p-column>-->
+
+    <p-column field="apellidoPaternoNana" header="Apellido Paterno"></p-column>
+    <p-column field="apellidoMaternoNana" header="Apellido Materno"></p-column>
+      <p-column field="nombreNana" header="Nombre"></p-column>
+  <!--  <p-column field="direccionNana" header="Dirección"></p-column>-->
+    <p-column field="telefonoNana" header="Teléfono"></p-column>
+    <p-column>
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template let-report="rowData" pTemplate="body">
+            <button type="button" class="btn btn-outline-primary" pButton (click)="pasarDatos(report)">Actualizar</button>
+        </ng-template>
+    </p-column>
+    <p-column>
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template let-report="rowData" pTemplate="body">
+            <button type="button" class="btn btn-outline-danger" pButton (click)="eliminarDatos(report)">Eliminar</button>
+        </ng-template>
+    </p-column>
+</p-dataTable>
+
+<a class="btn btn-outline-primary" [routerLink]="['/edit-nanas']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
+</block-ui>

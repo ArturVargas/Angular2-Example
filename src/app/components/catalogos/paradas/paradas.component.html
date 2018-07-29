@@ -1,0 +1,24 @@
+<h2>
+    Paradas</h2>
+<hr>
+
+<div class="container col-12">
+    <form class="form-inline my-2 my-lg-0">
+        <button (click)="buscarParada('hola')" class="btn btn-outline-primary my-2 my-sm-0" type="button">Todos</button>
+    </form>
+</div>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre de Parada</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of paradas">
+            <td>{{item.nombreRuta}}</td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-outline-primary" [routerLink]="['/edit-paradas']">Agregar <span class="sr-only">(current)</span></a>
+<a [routerLink]="['/catalogos']" class="btn btn-outline-danger"> Regresar</a>
